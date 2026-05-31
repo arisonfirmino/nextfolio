@@ -14,7 +14,7 @@ export default async function Home() {
   const experiences: any = await getExperiences();
 
   return (
-    <main className="flex flex-col items-center gap-8 px-5 py-16 md:px-0">
+    <>
       <Section title="Projetos" className="flex-col gap-8">
         {projects.map((project: ProjectTypes) => (
           <Project key={project.id} project={project} />
@@ -26,6 +26,6 @@ export default async function Home() {
           <Experience key={experience.id} experience={experience} />
         ))}
       </Section>
-    </main>
+    </>
   );
 }

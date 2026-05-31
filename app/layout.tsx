@@ -3,6 +3,9 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import { cn } from "@/app/lib/utils";
+import { Container } from "@/app/components/ui/container";
+import { Header } from "@/app/components/ui/header";
+import { Main } from "@/app/components/ui/main";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -21,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className={cn(jetBrainsMono.className, "antialiased")}>
-      <body>{children}</body>
+      <body>
+        <Container>
+          <Header />
+          <Main>{children}</Main>
+        </Container>
+      </body>
     </html>
   );
 }

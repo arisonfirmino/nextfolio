@@ -1,5 +1,4 @@
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { formatedDate } from "@/app/helpers/formatedDate";
 
 import { MinusIcon } from "lucide-react";
 
@@ -44,9 +43,7 @@ function ProjectHeader({
 function ProjectFooter({ date, techs }: { date: string; techs: string }) {
   return (
     <div className="text-muted-foreground flex items-center gap-4 text-xs">
-      <span className="capitalize">
-        {format(date, "MMMM yyyy", { locale: ptBR })}
-      </span>
+      <span className="capitalize">{formatedDate(date)}</span>
       <MinusIcon />
       <span>{techs}</span>
     </div>

@@ -16,3 +16,12 @@ export const getProjects = async () => {
 
   return response.results;
 };
+
+export const getExperiences = async () => {
+  const database_id = process.env.NOTION_PAGE_ID_EXPERIENCE!;
+  const response = await notion.dataSources.query({
+    data_source_id: database_id,
+  });
+
+  return response.results;
+};

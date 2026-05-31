@@ -9,7 +9,7 @@ function Section({
   return (
     <section
       data-slot="section"
-      className="flex w-full max-w-2xl flex-col gap-8 md:flex-row md:gap-16"
+      className="flex w-full max-w-2xl flex-col gap-16 md:flex-row"
       {...props}
     >
       {title && (

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ThemeProvider } from "@/app/providers/theme-provider";
+
 import { cn } from "@/app/lib/utils";
 import { Container } from "@/app/components/ui/container";
 import { Header } from "@/app/components/ui/header";
@@ -24,13 +26,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={cn(jetBrainsMono.className, "antialiased")}>
+    <html
+      lang="pt-br"
+      suppressHydrationWarning
+      className={cn(jetBrainsMono.className, "antialiased")}
+    >
       <body>
-        <Container>
-          <Header />
-          <Main>{children}</Main>
-          <Footer />
-        </Container>
+        <ThemeProvider>
+          <Container>
+            <Header />
+            <Main>{children}</Main>
+            <Footer />
+          </Container>
+        </ThemeProvider>
       </body>
     </html>
   );

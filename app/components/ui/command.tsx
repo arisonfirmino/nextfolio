@@ -6,7 +6,8 @@ import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "@/app/lib/utils";
 import { Dialog, DialogContent } from "@/app/components/ui/dialog";
 import { InputGroup, InputGroupAddon } from "@/app/components/ui/input-group";
-import { SearchIcon, CheckIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
+import { Badge } from "@/app/components/ui/badge";
 
 function Command({
   className,
@@ -82,19 +83,6 @@ function CommandList({
   );
 }
 
-// function CommandEmpty({
-//   className,
-//   ...props
-// }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
-//   return (
-//     <CommandPrimitive.Empty
-//       data-slot="command-empty"
-//       className={cn("", className)}
-//       {...props}
-//     />
-//   );
-// }
-
 function CommandGroup({
   className,
   ...props
@@ -111,19 +99,6 @@ function CommandGroup({
   );
 }
 
-// function CommandSeparator({
-//   className,
-//   ...props
-// }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
-//   return (
-//     <CommandPrimitive.Separator
-//       data-slot="command-separator"
-//       className={cn("", className)}
-//       {...props}
-//     />
-//   );
-// }
-
 function CommandItem({
   className,
   children,
@@ -133,13 +108,12 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item data-selected:bg-muted data-selected:text-foreground data-selected:*:[svg]:text-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group/command-item data-selected:bg-muted data-selected:text-foreground data-selected:*:[svg]:text-foreground relative flex h-16 cursor-pointer items-center gap-4 rounded-md p-4 text-sm outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
     >
       {children}
-      <CheckIcon className="ml-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100" />
     </CommandPrimitive.Item>
   );
 }
@@ -149,10 +123,9 @@ function CommandShortcut({
   ...props
 }: React.ComponentProps<"span">) {
   return (
-    <span
-      data-slot="command-shortcut"
+    <Badge
       className={cn(
-        "text-muted-foreground group-data-selected/command-item:text-foreground ml-auto text-xs tracking-widest",
+        "group-data-selected/command-item:bg-background tracking-widest",
         className,
       )}
       {...props}
@@ -165,9 +138,7 @@ export {
   CommandDialog,
   CommandInput,
   CommandList,
-  // CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandShortcut,
-  // CommandSeparator,
 };

@@ -9,7 +9,8 @@ import {
   CommandInput,
   CommandList,
 } from "@/app/components/ui/command";
-import ThemeSwitch from "@/app/components/ui/theme-switch";
+import { ThemeSwitch } from "@/app/components/ui/theme-switch";
+import { NavigationCommand } from "@/app/components/ui/navigation-command";
 
 function Menu() {
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ function Menu() {
           <CommandInput placeholder="Digite um comando ou pesquise..." />
 
           <CommandList>
+            <NavigationCommand setOpen={setOpen} />
             <ThemeSwitch />
           </CommandList>
         </Command>

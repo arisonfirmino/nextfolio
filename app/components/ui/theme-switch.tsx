@@ -8,11 +8,10 @@ import {
   CommandItem,
   CommandShortcut,
 } from "@/app/components/ui/command";
-import { Badge } from "@/app/components/ui/badge";
 
 import { MoonIcon, SunIcon, MonitorCogIcon } from "lucide-react";
 
-export default function ThemeSwitch() {
+function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -92,3 +91,4 @@ export default function ThemeSwitch() {
     </CommandGroup>
   );
 }
+export { ThemeSwitch };

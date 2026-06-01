@@ -15,13 +15,13 @@ export default async function Home() {
 
   return (
     <>
-      <Section title="Projetos" className="flex-col gap-8">
+      <Section title="Projetos">
         {projects.map((project: ProjectTypes) => (
           <Project key={project.id} project={project} />
         ))}
       </Section>
 
-      <Section title="Experiência" className="flex-col gap-8">
+      <Section title="Experiência">
         {experiences.map((experience: ExperienceTypes) => (
           <Experience key={experience.id} experience={experience} />
         ))}

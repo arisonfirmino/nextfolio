@@ -16,7 +16,9 @@ function Section({
         {title}
       </span>
 
-      <div className={cn(className, "flex")}>{children}</div>
+      <div className={cn(className, "flex w-full flex-col gap-8")}>
+        {children}
+      </div>
     </section>
   );
 }

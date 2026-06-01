@@ -10,7 +10,7 @@ export default async function About() {
   const avatar = process.env.NEXT_PUBLIC_AVATAR as string;
 
   return (
-    <Section title="Sobre" className="flex-col gap-8">
+    <Section title="Sobre">
       <Image
         src={avatar}
         alt={process.env.NEXT_PUBLIC_NAME as string}

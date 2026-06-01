@@ -125,7 +125,7 @@ function CommandShortcut({
   return (
     <Badge
       className={cn(
-        "group-data-selected/command-item:bg-background tracking-widest",
+        "group-data-selected/command-item:bg-background ml-auto tracking-widest",
         className,
       )}
       {...props}

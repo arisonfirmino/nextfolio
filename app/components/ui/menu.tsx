@@ -11,8 +11,11 @@ import {
 } from "@/app/components/ui/command";
 import { ThemeSwitch } from "@/app/components/ui/theme-switch";
 import { NavigationCommand } from "@/app/components/ui/navigation-command";
+import { ProjectNavigation } from "@/app/components/ui/project-navigation";
 
-function Menu() {
+import { ProjectTypes } from "@/app/types";
+
+function Menu({ projects }: { projects: ProjectTypes[] }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -39,8 +42,9 @@ function Menu() {
           <CommandInput placeholder="Digite um comando ou pesquise..." />
 
           <CommandList>
-            <NavigationCommand setOpen={setOpen} />
             <ThemeSwitch />
+            <NavigationCommand setOpen={setOpen} />
+            <ProjectNavigation projects={projects} setOpen={setOpen} />
           </CommandList>
         </Command>
       </CommandDialog>

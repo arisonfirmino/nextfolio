@@ -16,7 +16,7 @@ function NavigationCommand({ setOpen }: { setOpen: (open: boolean) => void }) {
   const router = useRouter();
 
   return (
-    <CommandGroup heading="Navegação">
+    <CommandGroup heading="Páginas">
       {pages.map((page) => (
         <CommandItem
           key={page.href}

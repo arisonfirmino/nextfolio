@@ -6,9 +6,11 @@ import { Badge } from "@/app/components/ui/badge";
 import {
   Command,
   CommandDialog,
+  CommandGroup,
   CommandInput,
   CommandList,
 } from "@/app/components/ui/command";
+import { BackCommand } from "@/app/components/ui/back-command";
 import { ThemeSwitch } from "@/app/components/ui/theme-switch";
 import { NavigationCommand } from "@/app/components/ui/navigation-command";
 import { ProjectNavigation } from "@/app/components/ui/project-navigation";
@@ -42,6 +44,10 @@ function Menu({ projects }: { projects: ProjectTypes[] }) {
           <CommandInput placeholder="Digite um comando ou pesquise..." />
 
           <CommandList>
+            <CommandGroup heading="Navegação">
+              <BackCommand setOpen={setOpen} />
+            </CommandGroup>
+
             <ThemeSwitch />
             <NavigationCommand setOpen={setOpen} />
             <ProjectNavigation projects={projects} setOpen={setOpen} />

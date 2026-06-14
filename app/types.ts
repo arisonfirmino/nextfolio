@@ -18,3 +18,10 @@ export type ExperienceTypes = {
     period: { date: { start: string; end?: string } };
   };
 };
+
+export type SkillTypes = {
+  id: string;
+  properties: {
+    name: { title: [{ plain_text: string }] };
+  };
+};

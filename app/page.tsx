@@ -3,6 +3,7 @@ import { getProjects, getExperiences } from "@/app/lib/notion";
 import { Section } from "@/app/components/ui/section";
 import { Project } from "@/app/components/ui/project";
 import { Experience } from "@/app/components/ui/experience";
+import { SkillCategory } from "@/app/components/ui/skill-category";
 
 import { ExperienceTypes, ProjectTypes } from "@/app/types";
 
@@ -21,10 +22,18 @@ export default async function Home() {
         ))}
       </Section>
 
-      <Section title="Experiência">
+      <Section title="Experiências">
         {experiences.map((experience: ExperienceTypes) => (
           <Experience key={experience.id} experience={experience} />
         ))}
+      </Section>
+
+      <Section title="Habilidades">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:gap-8">
+          <SkillCategory title="Front-End" category="frontend" />
+          <SkillCategory title="Back-End" category="backend" />
+          <SkillCategory title="Banco de Dados" category="db" />
+        </div>
       </Section>
     </>
   );

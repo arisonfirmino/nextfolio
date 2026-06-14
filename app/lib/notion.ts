@@ -32,7 +32,7 @@ export const getProjects = async () => {
 };
 
 export const getExperiences = async () => {
-  const database_id = process.env.NOTION_PAGE_ID_EXPERIENCE!;
+  const database_id = process.env.NOTION_PAGE_ID_EXPERIENCES!;
   const response = await notion.dataSources.query({
     data_source_id: database_id,
   });
@@ -49,4 +49,17 @@ export const getAboutMe = async () => {
   const blocks = await getPageBlocks(response.results[0].id);
 
   return blocks;
+};
+
+export const getSkills = async (category: string) => {
+  const database_id = process.env.NOTION_PAGE_ID_SKILLS!;
+  const response = await notion.dataSources.query({
+    data_source_id: database_id,
+    filter: {
+      property: "category",
+      select: { equals: category },
+    },
+  });
+
+  return response.results;
 };

@@ -7,7 +7,7 @@ async function Footer() {
   const projects: any = await getProjects();
 
   return (
-    <footer className="flex w-full max-w-2xl flex-col gap-4">
+    <footer className="flex w-full max-w-2xl flex-col gap-4 px-5 md:px-0">
       <div className="relative flex items-center justify-end">
         <Menu projects={projects} />
         <hr className="border-border absolute w-full" />

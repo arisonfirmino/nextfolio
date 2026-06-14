@@ -18,7 +18,7 @@ function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="flex w-full max-w-2xl items-center gap-8">
+    <header className="flex w-full max-w-2xl flex-col items-center gap-4 px-5 md:flex-row md:gap-8 md:px-0">
       <h1 className="text-base font-bold uppercase md:max-w-35 md:min-w-35 md:text-right">
         {name}
       </h1>

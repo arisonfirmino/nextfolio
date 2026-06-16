@@ -1,21 +1,20 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import { getSocials } from "@/app/lib/notion";
 
 import { Navbar } from "@/app/components/ui/navbar";
 import { Link } from "@/app/components/ui/link";
 
-function Header() {
+import { SocialTypes } from "@/app/types";
+
+async function Header() {
   const name = process.env.NEXT_PUBLIC_NAME;
-  const username = process.env.NEXT_PUBLIC_USERNAME;
-  const email = process.env.NEXT_PUBLIC_EMAIL;
 
-  const links = [
-    { platform: "LinkedIn", href: `https://www.linkedin.com/in/${username}` },
-    { platform: "GitHub", href: `https://github.com/${username}` },
-  ];
-
-  const pathname = usePathname();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const socials: any = await getSocials({
+    or: [
+      { property: "platform", title: { equals: "LinkedIn" } },
+      { property: "platform", title: { equals: "GitHub" } },
+    ],
+  });
 
   return (
     <header className="flex w-full max-w-2xl flex-col items-center gap-4 px-5 md:flex-row md:gap-8 md:px-0">
@@ -24,20 +23,14 @@ function Header() {
       </h1>
 
       <div className="flex w-full items-center justify-between text-xs">
-        {pathname === "/contact" ? (
-          <>
-            <span className="text-foreground/80">Entre em contato</span>
-            <Link href={`mailto:${email}`}>{email}</Link>
-          </>
-        ) : (
-          links.map((link) => (
-            <Link key={link.platform} href={link.href}>
-              {link.platform === "LinkedIn"
-                ? "in/" + username
-                : "github/" + username}
-            </Link>
-          ))
-        )}
+        {socials.map((social: SocialTypes) => (
+          <Link key={social.id} href={social.properties.href.url}>
+            {social.properties.platform.title[0].plain_text === "LinkedIn"
+              ? "in/" + social.properties.username.rich_text[0].plain_text
+              : "github/" + social.properties.username.rich_text[0].plain_text}
+          </Link>
+        ))}
+
         <Navbar />
       </div>
     </header>

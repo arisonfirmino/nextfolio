@@ -25,3 +25,12 @@ export type SkillTypes = {
     name: { title: [{ plain_text: string }] };
   };
 };
+
+export type SocialTypes = {
+  id: string;
+  properties: {
+    platform: { title: [{ plain_text: string }] };
+    href: { url: string };
+    username: { rich_text: [{ plain_text: string }] };
+  };
+};

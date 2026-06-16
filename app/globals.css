@@ -37,7 +37,11 @@
     @apply bg-background text-foreground;
   }
 
-  html {
-    @apply font-sans;
+  .notion-color-blue {
+    @apply text-[#387cc7] hover:underline;
+  }
+
+  .notion-text-bold {
+    @apply text-foreground font-bold;
   }
 }

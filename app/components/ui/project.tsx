@@ -1,12 +1,14 @@
 import { formatedDate } from "@/app/helpers/formatedDate";
 
-import { MinusIcon } from "lucide-react";
+import { Link } from "@/app/components/ui/link";
+
+import { MinusIcon, SquareArrowOutUpRightIcon } from "lucide-react";
 
 import { ProjectTypes } from "@/app/types";
 
 function Project({ project }: { project: ProjectTypes }) {
   return (
-    <div className="flex flex-col gap-2 [&_svg:not([class*='size-'])]:size-4">
+    <div className="flex flex-col gap-2">
       <ProjectHeader
         title={project.properties.title.title[0].plain_text}
         subtitle={project.properties.subtitle.select.name}
@@ -19,6 +21,7 @@ function Project({ project }: { project: ProjectTypes }) {
       <ProjectFooter
         date={project.properties.date.date.start}
         techs={project.properties.techs.rich_text[0].plain_text}
+        href={project.properties.deploy.url}
       />
     </div>
   );
@@ -34,18 +37,32 @@ function ProjectHeader({
   return (
     <div className="flex items-center gap-4">
       <p className="text-base font-bold">{title}</p>
-      <MinusIcon className="text-muted-foreground" />
+      <MinusIcon size={16} className="text-muted-foreground" />
       <span className="text-muted-foreground text-xs">{subtitle}</span>
     </div>
   );
 }
 
-function ProjectFooter({ date, techs }: { date: string; techs: string }) {
+function ProjectFooter({
+  date,
+  techs,
+  href,
+}: {
+  date: string;
+  techs: string;
+  href: string;
+}) {
   return (
-    <div className="text-muted-foreground flex items-center gap-4 text-xs">
-      <span className="capitalize">{formatedDate(date)}</span>
-      <MinusIcon />
-      <span>{techs}</span>
+    <div className="flex items-center justify-between text-xs">
+      <div className="text-muted-foreground flex items-center gap-4">
+        <span>{formatedDate(date)}</span>
+        <MinusIcon />
+        <span>{techs}</span>
+      </div>
+
+      <Link href={href} className="text-primary! uppercase">
+        <SquareArrowOutUpRightIcon /> Ver projeto
+      </Link>
     </div>
   );
 }

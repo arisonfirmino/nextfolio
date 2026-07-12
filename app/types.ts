@@ -6,6 +6,7 @@ export type ProjectTypes = {
     subtitle: { select: { name: string } };
     techs: { rich_text: [{ plain_text: string }] };
     date: { date: { start: string } };
+    deploy: { url: string };
   };
 };
 

@@ -9,14 +9,16 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
   --color-border: var(--border);
 }
 
 :root {
-  --background: #f6f7f8;
-  --foreground: #000000;
+  --background: #ffffff;
+  --foreground: #3e4241;
   --muted: #ebeced;
-  --muted-foreground: #a1a1a1;
+  --muted-foreground: #8f8f8f;
+  --primary: #2783de;
   --border: #ebeced;
 }
 
@@ -25,6 +27,7 @@
   --foreground: #ffffff;
   --muted: #2f2f2f;
   --muted-foreground: #a1a1a1;
+  --primary: #2783de;
   --border: #2f2f2f;
 }
 
@@ -38,7 +41,7 @@
   }
 
   .notion-color-blue {
-    @apply text-[#387cc7] hover:underline;
+    @apply text-primary hover:underline;
   }
 
   .notion-text-bold {

@@ -12,7 +12,7 @@ function Link({
       rel="noopener noreferrer"
       className={cn(
         className,
-        "text-foreground/80 hover:text-foreground hover:underline",
+        "text-foreground/80 hover:text-foreground flex items-center gap-2 hover:underline [&_svg:not([class*='size-'])]:size-3.5",
       )}
       {...props}
     />

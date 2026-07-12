@@ -11,6 +11,7 @@ import {
   CommandList,
 } from "@/app/components/ui/command";
 import { BackCommand } from "@/app/components/ui/back-command";
+import { HomeCommand } from "@/app/components/ui/home-command";
 import { ThemeSwitch } from "@/app/components/ui/theme-switch";
 import { NavigationCommand } from "@/app/components/ui/navigation-command";
 import { ProjectNavigation } from "@/app/components/ui/project-navigation";
@@ -46,6 +47,7 @@ function Menu({ projects }: { projects: ProjectTypes[] }) {
           <CommandList>
             <CommandGroup heading="Navegação">
               <BackCommand setOpen={setOpen} />
+              <HomeCommand setOpen={setOpen} />
             </CommandGroup>
 
             <ThemeSwitch />

@@ -123,9 +123,9 @@ function CommandShortcut({
   ...props
 }: React.ComponentProps<"span">) {
   return (
-    <Badge
+    <span
       className={cn(
-        "group-data-selected/command-item:bg-background ml-auto tracking-widest",
+        "text-muted-foreground ml-auto text-xs tracking-widest",
         className,
       )}
       {...props}

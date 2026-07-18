@@ -116,7 +116,9 @@ function Menu({
                   }}
                 >
                   {command === "email" ? <MailIcon /> : <FileTextIcon />}
-                  {command === "email" ? "arsnfrm@gmail.com" : "Currículo"}
+                  {command === "email"
+                    ? email?.replace("mailto:", "")
+                    : "Currículo"}
 
                   <CommandShortcut>Link</CommandShortcut>
                 </CommandItem>

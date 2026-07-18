@@ -3,11 +3,8 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
-import {
-  CommandGroup,
-  CommandItem,
-  CommandShortcut,
-} from "@/app/components/ui/command";
+import { CommandGroup, CommandItem } from "@/app/components/ui/command";
+import { Badge } from "@/app/components/ui/badge";
 
 import { MoonIcon, SunIcon, MonitorCogIcon } from "lucide-react";
 
@@ -77,13 +74,18 @@ function ThemeSwitch() {
   ];
 
   return (
-    <CommandGroup heading="Aperência">
+    <CommandGroup heading="Aparência">
       {themeItems.map((item, index) => (
         <CommandItem key={index} onSelect={item.action}>
           {item.icon} {item.label}
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex items-center gap-1.5">
             {item.shortcut.map((key, index) => (
-              <CommandShortcut key={index}>{key}</CommandShortcut>
+              <Badge
+                key={index}
+                className="group-data-selected/command-item:bg-background tracking-widest"
+              >
+                {key}
+              </Badge>
             ))}
           </div>
         </CommandItem>

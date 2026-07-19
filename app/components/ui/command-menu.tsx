@@ -24,21 +24,24 @@ import {
   FileTextIcon,
   ArrowLeftIcon,
   HomeIcon,
+  GlobeIcon,
   LucideIcon,
 } from "lucide-react";
 
-import { ProjectTypes, SocialTypes } from "@/app/types";
+import { SocialTypes } from "@/app/types";
 
 const SOCIAL_PLATFORM = {
   EMAIL: "E-mail",
   RESUME: "Resume",
 } as const;
 
-function getSocialHref(links: SocialTypes[], platform: string) {
-  return links.find(
-    (link) => link.properties.platform.title[0]?.plain_text === platform,
-  )?.properties.href.url;
-}
+const SOCIAL_ICON: Record<string, LucideIcon> = {
+  GitHub: GlobeIcon,
+  LinkedIn: GlobeIcon,
+  X: GlobeIcon,
+};
+
+const DEFAULT_SOCIAL_ICON = GlobeIcon;
 
 type NavCommand = {
   id: "back" | "home";
@@ -48,6 +51,30 @@ type NavCommand = {
   shortcutLabel: string;
   run: (router: ReturnType<typeof useRouter>) => void;
 };
+
+type SocialCommand = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  href: string;
+};
+
+function getSocialHref(links: SocialTypes[], platform: string) {
+  return links.find(
+    (link) => link.properties.platform.title[0]?.plain_text === platform,
+  )?.properties.href.url;
+}
+
+function toSocialCommand(link: SocialTypes): SocialCommand {
+  const platform = link.properties.platform.title[0]?.plain_text ?? "";
+
+  return {
+    id: link.id,
+    label: platform,
+    icon: SOCIAL_ICON[platform] ?? DEFAULT_SOCIAL_ICON,
+    href: link.properties.href.url,
+  };
+}
 
 const NAV_COMMANDS: NavCommand[] = [
   {
@@ -69,11 +96,11 @@ const NAV_COMMANDS: NavCommand[] = [
 ];
 
 function CommandMenu({
-  projects,
-  links,
+  contactLinks,
+  socialLinks,
 }: {
-  projects: ProjectTypes[];
-  links: SocialTypes[];
+  contactLinks: SocialTypes[];
+  socialLinks: SocialTypes[];
 }) {
   const [open, setOpen] = useState(false);
 
@@ -82,22 +109,21 @@ function CommandMenu({
   const { commands: themeCommands } = useThemeCommands();
 
   const email = useMemo(
-    () => getSocialHref(links, SOCIAL_PLATFORM.EMAIL),
-    [links],
+    () => getSocialHref(contactLinks, SOCIAL_PLATFORM.EMAIL),
+    [contactLinks],
   );
   const resume = useMemo(
-    () => getSocialHref(links, SOCIAL_PLATFORM.RESUME),
-    [links],
+    () => getSocialHref(contactLinks, SOCIAL_PLATFORM.RESUME),
+    [contactLinks],
+  );
+
+  const socialCommands = useMemo(
+    () => socialLinks.map(toSocialCommand),
+    [socialLinks],
   );
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      const target = event.target as HTMLElement | null;
-      const isTyping =
-        target?.tagName === "INPUT" ||
-        target?.tagName === "TEXTAREA" ||
-        target?.isContentEditable;
-
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         setOpen((prev) => !prev);
@@ -207,6 +233,22 @@ function CommandMenu({
 
             <CommandGroup heading="Aparência">
               <ThemeCommandGroup onSelect={() => setOpen(false)} />
+            </CommandGroup>
+
+            <CommandGroup heading="Redes Sociais">
+              {socialCommands.map(({ id, label, icon: Icon, href }) => (
+                <CommandItem
+                  key={id}
+                  onSelect={() => {
+                    setOpen(false);
+                    window.open(href, "_blank", "noopener,noreferrer");
+                  }}
+                >
+                  <Icon />
+                  {label}
+                  <CommandShortcut>Link</CommandShortcut>
+                </CommandItem>
+              ))}
             </CommandGroup>
           </CommandList>
         </Command>

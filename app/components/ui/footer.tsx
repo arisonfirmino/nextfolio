@@ -1,6 +1,6 @@
 import { getProjects, getSocials } from "@/app/lib/notion";
 
-import { Menu } from "@/app/components/ui/menu";
+import { CommandMenu } from "@/app/components/ui/command-menu";
 
 async function Footer() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,7 +17,7 @@ async function Footer() {
   return (
     <footer className="flex w-full max-w-2xl flex-col gap-4 px-5 md:px-0">
       <div className="relative flex items-center justify-end">
-        <Menu projects={projects} links={links} />
+        <CommandMenu projects={projects} links={links} />
         <hr className="border-border absolute w-full" />
       </div>
 

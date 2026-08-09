@@ -12,7 +12,6 @@ interface TransitionLinkProps extends LinkProps {
   children: React.ReactNode;
   className?: string;
   duration?: number;
-  transitionClassName?: string;
   target?: string;
 }
 
@@ -25,7 +24,6 @@ function TransitionLink({
   href,
   className,
   duration = 500,
-  transitionClassName = "page-transition",
   target,
   onClick,
   ...props
@@ -55,18 +53,22 @@ function TransitionLink({
         return;
       }
 
-      const body = document.body;
+      const main = document.querySelector("#main");
       isTransitioning.current = true;
 
-      body.classList.add("page-transition-out");
+      main?.classList.add("page-transition-out");
       await sleep(duration);
-      body.classList.remove("page-transition-out");
+      main?.classList.remove("page-transition-out");
 
       router.push(href.toString());
 
-      body.classList.add("page-transition-in");
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      );
+
+      main?.classList.add("page-transition-in");
       await sleep(duration);
-      body.classList.remove("page-transition-in");
+      main?.classList.remove("page-transition-in");
 
       isTransitioning.current = false;
     },

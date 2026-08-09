@@ -40,6 +40,40 @@
     @apply bg-background text-foreground;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
+  @keyframes slide-out-left {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-4%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(4%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .page-transition-out {
+    animation: slide-out-left 500ms ease-in-out forwards;
+  }
+
+  .page-transition-in {
+    animation: slide-in-right 500ms ease-in-out forwards;
+  }
+
   .notion-color-blue {
     @apply text-primary hover:underline;
   }

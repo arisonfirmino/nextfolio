@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Fragment } from "react/jsx-runtime";
 
-import Link from "next/link";
+import { TransitionLink } from "@/app/components/ui/transition-link";
 
 import { cn } from "@/app/lib/utils";
 
@@ -19,7 +19,7 @@ function Navbar() {
     <nav className="flex items-center gap-4 text-sm uppercase">
       {pages.map((page, index) => (
         <Fragment key={page.href}>
-          <Link
+          <TransitionLink
             href={page.href}
             className={cn(
               pathname === page.href
@@ -28,7 +28,7 @@ function Navbar() {
             )}
           >
             {page.name}
-          </Link>
+          </TransitionLink>
 
           {index < pages.length - 1 && (
             <span className="text-muted-foreground">/</span>
